@@ -12,6 +12,8 @@ mongoose
   .then(() => console.log('Success connection with mongo'))
   .catch((error) => console.error(error));
 
+/* ACTIVIDAD TWILIO SENDGRID */
+
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
@@ -46,6 +48,14 @@ app.use((err, req, res, next)=>{
 })
 
 
+/* ACTIVIDAD WHATSAPP TWILIO */
+client.messages
+  .create({
+     from: 'whatsapp:+14155238886',
+     body: 'Hola, este es un mensaje de prueba para la actividad de Twilio WhatsApp de Ingeniería de Software II',
+     to: 'whatsapp:+573054562743'
+   })
+  .then(message => console.log(message.sid));
 
 
 /* Respuestas a solicitudes http en formato JSON */
